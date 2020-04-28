@@ -18,11 +18,11 @@
 }
 
 .button.double {
-  grid-template-columns: 2 span;
+  grid-column: span 2;
 }
 
 .button.triple {
-  grid-template-columns: 3 span;
+  grid-column: span 3;
 }
 
 .button.operation {
@@ -30,6 +30,6 @@
   color: #f0f0f0;
 }
 
-.button:active:active {
+.button.operation:active {
   background-color: #fa8231cc;
 }
