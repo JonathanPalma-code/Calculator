@@ -1,7 +1,10 @@
 .Calculator {
   height: 320px;
   width: 235px;
-  overflow: hidden;
+  overflow: hidden; /* to hide if anything transpass */
   border-radius: 5%;
-  background-color: dodgerblue;
+
+  display: grid; /* using grid to display the buttons */
+  grid-template-columns: repeat(4, 25%); /* displays 4 columns, all 25% */
+  grid-template-rows: 48px 48px 48px 48px 48px; /* displays 5 lines with 48px each */
 }
