@@ -6,5 +6,5 @@
 
   display: grid; /* using grid to display the buttons */
   grid-template-columns: repeat(4, 25%); /* displays 4 columns, all 25% */
-  grid-template-rows: 48px 48px 48px 48px 48px; /* displays 5 lines with 48px each */
+  grid-template-rows: 1fr 48px 48px 48px 48px 48px; /* displays 1 fragment and 5 lines with 48px each */
 }
