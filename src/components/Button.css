@@ -10,5 +10,26 @@
   border: none;
   border-right: var(--border-button);
   border-bottom: var(--border-button);
-  outline: none; /* no button effect when clicking */
+  outline: none; /* no button border effect when clicking */
+}
+
+.button:active {
+  background-color: #b0cae5; /* activate the color when clicking the button */
+}
+
+.button.double {
+  grid-template-columns: 2 span;
+}
+
+.button.triple {
+  grid-template-columns: 3 span;
+}
+
+.button.operation {
+  background-color: #fa8231;
+  color: #f0f0f0;
+}
+
+.button:active:active {
+  background-color: #fa8231cc;
 }

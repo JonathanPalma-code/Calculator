@@ -14,7 +14,7 @@ export default class Calculator extends Component {
         <Button label="7"></Button>
         <Button label="8"></Button>
         <Button label="9"></Button>
-        <Button label="x"></Button>
+        <Button label="*"></Button>
         <Button label="4"></Button>
         <Button label="5"></Button>
         <Button label="6"></Button>
