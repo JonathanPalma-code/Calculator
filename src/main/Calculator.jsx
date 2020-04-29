@@ -4,7 +4,18 @@ import './Calculator.css';
 import Button from '../components/Button';
 import Display from '../components/Display';
 
+// an object to use whenever you press AC
+const initialState = {
+  displayValue: '0',
+  clearDisplay: false,
+  operation: null,
+  values: [0, 0],
+  current: 0
+};
+
 export default class Calculator extends Component {
+
+  state = {...initialState};
 
   constructor(props) {
     super(props);
@@ -14,7 +25,7 @@ export default class Calculator extends Component {
   }
 
   clearMemory() {
-    console.log('Clean')
+    this.setState({...initialState});
   }
 
   setOperation(operation) {
@@ -22,13 +33,27 @@ export default class Calculator extends Component {
   }
 
   addDigit(number) {
-    console.log(number);
+    // To make sure that the user doesn't implement two or more dots
+    if (number === '.' && this.state.displayValue.includes('.')) {
+      return;
+    }
+
+    // clear display whenever the conditions is true
+    const clearDisplay = this.state.displayValue === '0' ||
+      this.state.clearDisplay;
+    // need to clear the display will be empty otherwise it will display the value
+    const currentValue = clearDisplay ? '' : this.state.displayValue;
+
+    const displayValue = currentValue + number;
+
+    // display the state on the screen display
+    this.setState({displayValue, clearDisplay: false});
   }
 
   render() {
     return (
       <div className='Calculator'>
-        <Display value={100}></Display>
+        <Display value={this.state.displayValue}></Display>
         <Button label="AC" click={this.clearMemory} triple/>
         <Button label="/" click={this.setOperation} operation/>
         <Button label="7" click={this.addDigit} />
@@ -44,7 +69,7 @@ export default class Calculator extends Component {
         <Button label="3" click={this.addDigit} />
         <Button label="+" click={this.setOperation} operation/>
         <Button label="0" click={this.addDigit} double/>
-        <Button label="." />
+        <Button label="." click={this.addDigit}/>
         <Button label="=" click={this.setOperation} operation/>
       </div>
     )
