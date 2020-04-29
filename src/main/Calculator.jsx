@@ -29,7 +29,50 @@ export default class Calculator extends Component {
   }
 
   setOperation(operation) {
-    console.log(operation)
+    if (this.state.current === 0) {
+      this.setState({
+        operation, 
+        current: 1, 
+        clearDisplay: true
+      });
+    }
+    else {
+      const equals = operation === '=';
+      const currentOperation = this.state.operation;
+
+      const values = [...this.state.values];
+      switch (currentOperation) {
+        case '+':
+          values[0] = values[0] + values[1];
+          break;
+        case '-':
+          values[0] = values[0] - values[1];
+          break;
+        case '*':
+          values[0] = values[0] * values[1];
+          break;
+        case '/':
+          values[0] = values[0] / values[1];
+          break;
+        case '=':
+          values[0] = values[1];
+          break;
+        default:
+          break;
+      }
+      values[1] = 0;
+      
+      // One line solution instead of switch case, however not appropiate:
+        // values[0] = eval(`${values[0]} ${currentOperation} ${values[1]}`);
+
+      this.setState({
+        displayValue: values[0],
+        clearDisplay: !equals,
+        operation: equals ? null : operation,
+        values,
+        current: equals? 0 : 1
+      });
+    }
   }
 
   addDigit(number) {
@@ -47,7 +90,10 @@ export default class Calculator extends Component {
     const displayValue = currentValue + number;
 
     // display the state on the screen display
-    this.setState({displayValue, clearDisplay: false});
+    this.setState({
+      displayValue, 
+      clearDisplay: false
+    });
 
     if (number !== '.') {
       const index = this.state.current;
@@ -56,8 +102,10 @@ export default class Calculator extends Component {
       const newValue = parseFloat(displayValue);
 
       values[index] = newValue;
-      this.setState({ values });
-      console.log(values);
+
+      this.setState({ 
+        values 
+      });
     }
   }
 
