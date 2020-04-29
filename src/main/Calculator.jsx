@@ -48,6 +48,17 @@ export default class Calculator extends Component {
 
     // display the state on the screen display
     this.setState({displayValue, clearDisplay: false});
+
+    if (number !== '.') {
+      const index = this.state.current;
+      const values = [...this.state.values]; // clone a new array
+
+      const newValue = parseFloat(displayValue);
+
+      values[index] = newValue;
+      this.setState({ values });
+      console.log(values);
+    }
   }
 
   render() {
